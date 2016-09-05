@@ -1,0 +1,54 @@
+//输入一个字符串，利用先序遍历实现2叉树的生成，并且用中序遍历实现2叉树
+#include <stdio.h>
+#include <malloc.h>
+#define null 0
+
+int n1,n2;//n1用来计算有多少个空格，n2用来计算中共有多少个结点
+
+typedef struct BiTNode
+{
+	char data;
+	struct BiTNode *lchild,*rchild;
+}BiTNode,*BiTtree;
+
+void createBiTree(BiTtree &T)
+{
+	char ch;
+	scanf("%c",&ch);
+	n2++;
+	if(ch==' ') 
+	{
+		T=null;
+		n1++;
+	}
+	else 
+	{
+		if(!(T=(BiTNode *)malloc(sizeof(BiTNode)))) printf("error");
+        T->data=ch;
+		createBiTree(T->lchild);
+		createBiTree(T->rchild);
+	}
+}
+
+void PreOrderTraverse(BiTtree &T)
+{
+	if(T)
+	{
+	    PreOrderTraverse(T->lchild);
+		if(T->data) printf("%c",T->data);
+		PreOrderTraverse(T->rchild);
+	}
+}
+
+void main()
+{
+	BiTtree s;
+	printf("please input the element:\n");
+	createBiTree(s);
+	if((n2-n1)==n1+1)
+	{
+        PreOrderTraverse(s);
+	    printf("\n");
+	}
+	else printf("error");
+}

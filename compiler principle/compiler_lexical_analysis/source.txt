@@ -1,0 +1,5 @@
+void main()
+{
+     i++ is a c program;
+     /* fawerf*/
+}@

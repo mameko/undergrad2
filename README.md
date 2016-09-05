@@ -1,2 +1,3 @@
 # undergrad2
-RIP protocol simulation
+RipSimulation - RIP protocol simulation.
+

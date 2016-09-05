@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: MazeStack - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1D1.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/MazeStack.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"J:\课程设计\MazeStack.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1D1.tmp" 
+<h3>Output Window</h3>
+Compiling...
+MazeStack.cpp
+j:\课程设计\mazestack.cpp(18) : error C2146: syntax error : missing ';' before identifier 'data'
+j:\课程设计\mazestack.cpp(18) : error C2501: 'Maze' : missing storage-class or type specifiers
+j:\课程设计\mazestack.cpp(18) : error C2501: 'data' : missing storage-class or type specifiers
+j:\课程设计\mazestack.cpp(32) : error C2061: syntax error : identifier 'Maze'
+j:\课程设计\mazestack.cpp(36) : error C2065: 'e' : undeclared identifier
+j:\课程设计\mazestack.cpp(36) : error C2039: 'data' : is not a member of 'nude'
+        j:\课程设计\mazestack.cpp(17) : see declaration of 'nude'
+j:\课程设计\mazestack.cpp(42) : error C2146: syntax error : missing ';' before identifier 'Pop'
+j:\课程设计\mazestack.cpp(42) : error C2501: 'Maze' : missing storage-class or type specifiers
+j:\课程设计\mazestack.cpp(42) : fatal error C1004: unexpected end of file found
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+MazeStack.obj - 9 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: zjm - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1C.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/zjm.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1C.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1D.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/zjm.pdb" /debug /machine:I386 /out:"Debug/zjm.exe" /pdbtype:sept 
+".\Debug\zjm.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1D.tmp"
+<h3>Output Window</h3>
+Compiling...
+zjm.c
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(8) : warning C4013: 'window' undefined; assuming extern returning int
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(9) : warning C4013: 'textbackground' undefined; assuming extern returning int
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(9) : error C2065: 'BLUE' : undeclared identifier
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(10) : warning C4013: 'clrscr' undefined; assuming extern returning int
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(11) : warning C4013: 'textcolor' undefined; assuming extern returning int
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(11) : error C2065: 'YELLOW' : undeclared identifier
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(16) : warning C4013: 'wherey' undefined; assuming extern returning int
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(17) : warning C4013: 'gotoxy' undefined; assuming extern returning int
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\zjm.c(25) : warning C4013: 'wherex' undefined; assuming extern returning int
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+zjm.exe - 2 error(s), 7 warning(s)
+</pre>
+</body>
+</html>

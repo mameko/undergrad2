@@ -1,0 +1,205 @@
+                    字符屏幕函数 
+
+    Turbo C2.0的字符屏幕函数主要包括文本窗口大小的设定、窗口颜色的设置、 
+窗口文本的清除和输入输出等函数。 
+
+    1.文本窗口的定义 
+    Turbo C2.0默认定义的文本窗口为整个屏幕, 共有80列(或40列)25行的文本 
+单元, 每个单元包括一个字符和一个属性, 字符即ASCII 码字符, 属性规定该字 
+符的颜色和强度。 
+    Turbo C2.0可以定义屏幕上的一个矩形域作为窗口, 使用window()函数定义。 
+窗口定义之后, 用有关窗口的输入输出函数就可以只在此窗口内进行操作而不超 
+出窗口的边界。 
+    window()函数的调用格式为: 
+     void window(int left, int top, int right, int bottom); 
+    该函数的原型在conio.h 中 (关于文本窗口的所有函数其头文件均为conio.h, 
+后面不再说明)。 函数中形式参数(int left,  int top)是窗口左上角的坐标, 
+(int right, int  bottom)是窗口的右下角坐标, 其中(left,  top)和(right, 
+bottom) 是相对于整个屏幕而言的。 Turbo C 2.0规定整个屏幕的左上角坐标为 
+(1, 1), 右下角坐标为(80, 25)。并规定沿水平方向为 X轴, 方向朝右; 沿垂直 
+方向为 Y轴, 方向朝下。若window()函数中的坐标超过了屏幕坐标的界限, 则窗 
+口的定义就失去了意义, 也就是说定义将不起作用, 但程序编译链接时并不出错。 
+    另外, 一个屏幕可以定义多个窗口, 但现行窗口只能有一个(因为DOS为单任 
+务操作系统), 当需要用另一窗口时, 可将定义该窗口的window() 函数再调用一 
+次, 此时该窗口便成为现行窗口了。 
+    如要定义一个窗口左上角在屏幕(20, 5)处, 大小为30列15行的窗口可写成: 
+     window(20, 5, 50, 25); 
+
+    2. 文本窗口颜色的设置 
+    文本窗口颜色的设置包括背景颜色的设置和字符颜色的设置, 使用的函数及 
+其调用格式为: 
+    设置背景颜色:  void textbackground(int color); 
+    设置字符颜色:  void textcolor(int color); 
+    有关颜色的定义见表1。 
+                  表1. 有关颜色的定义 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+  符号常数         数值      含义         字符或背景 
+─────────────────────────── 
+  BLACK             0         黑          两者均可 
+  BLUE              1         兰          两者均可 
+  GREEN             2         绿          两者均可 
+  CYAN              3         青          两者均可 
+  RED               4         红          两者均可 
+  MAGENTA           5        洋红         两者均可 
+  BROWN             6         棕          两者均可 
+  LIGHTGRAY         7        淡灰         两者均可 
+  DARKGRAY          8        深灰         只用于字符 
+  LIGHTBLUE         9        淡兰         只用于字符 
+  LIGHTGREEN        10       淡绿         只用于字符 
+  LIGHTCYAN         11       淡青         只用于字符 
+  LIGHTRED          12       淡红         只用于字符 
+  LIGHTMAGENTA      13       淡洋红       只用于字符 
+  YELLOW            14       黄           只用于字符 
+  WHITE             15       白           只用于字符 
+  BLINK             128      闪烁         只用于字符 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+    上表中的符号常数与相应的数值等价, 二者可以互换。例如设定兰色背景可 
+以使用textbackground(1),  也可以使用textbackground(BLUE), 两者没有任何 
+区别, 只不过后者比较容易记忆, 一看就知道是兰色。 
+    Turbo C另外还提供了一个函数, 可以同时设置文本的字符和背景颜色, 这 
+个函数的调用格式为: 
+     void textattr(int attr); 
+    其中: attr的值表示颜色形式编码的信息, 每一位代表的含义如下: 
+       位      7   6   5   4      3   2   1   0 
+               B   b   b   b      c   c   c   c 
+               ↓  ┕━━━┙     ┖─────┘ 
+              闪烁  背景颜色         字符颜色 
+    字节低四位cccc设置字符颜色(0到15), 4~6三位bbb设置背景颜色(0到7), 
+第7位B设置字符是否闪烁。假如要设置一个兰底黄字, 定义方法如下: 
+          textattr(YELLOW+(BLUE<<4)); 
+    若再要求字符闪烁, 则定义变为: 
+          textattr(128+YELLOW+(BLUE<<4); 
+    注意: 
+      (1) 对于背景只有0 到7 共八种颜色, 若取大于7 小于15的数, 则代表的 
+颜色与减 7后的值对应的颜色相同。 
+      (2) 用textbackground()和textcolor() 函数设置了窗口的背景与字符颜 
+色后, 在没有用clrscr()函数清除窗口之前, 颜色不会改变,   直到使用了函数 
+clrscr(), 整个窗口和随后输出到窗口中的文本字符才会变成新颜色。 
+      (3) 用textattr()函数时背景颜色应左移4位, 才能使3位背景颜色移到正 
+确位置。 
+    下面这个程序使用了关于窗口大小的定义、颜色的设置等函数, 在一个屏幕 
+上不同位置定义了7个窗口, 其背景色分别使用了7种不同的颜色。 
+    例1.: 
+      #include <stdio.h> 
+      #include <conio.h> 
+      main() 
+     { 
+          int i; 
+          textbackground(0);            /* 设置屏幕背景色 */ 
+          clrscr();                     /* 清除文本屏幕 */ 
+          for(i=1; i<8; i++) 
+            { 
+               window(10+i*5, 5+i, 30+i*5, 15+i); /* 定义文本窗口 */ 
+               textbackground(i);        /* 定义窗口背景色 */ 
+               clrscr();                 /* 清除窗口 */ 
+             } 
+          getch(); 
+     } 
+
+    3. 窗口内文本的输入输出函数 
+
+    一、窗口内文本的输出函数 
+          int cprintf("<格式化字符串>", <变量表>); 
+          int cputs(char *string); 
+          int putch(int ch); 
+    cprintf()函数输出一个格式化的字符串或数值到窗口中。它与printf() 函 
+数的用法完全一样, 区别在于cprintf()函数的输出受窗口限制, 而printf() 函 
+数的输出为整个屏幕。 
+    cputs()函数输出一个字符串到屏幕上, 它与puts()函数用法完全一样,  只 
+是受窗口大小的限制。 
+    putch()函数输出一个字符到窗口内。 
+    注意: 
+     (1) 使用以上几种函数,  当输出超出窗口的右边界时会自动转到下一行的 
+开始处继续输出。当窗口内填满内容仍没有结束输出时, 窗口屏幕将会自动逐行 
+上卷直到输出结束为止。 
+
+    二、窗口内文本的输入函数 
+        int getche(void); 
+    该函数在前面已经讲过, 需要说明的是, getche()函数从键盘上获得一个字 
+符, 在屏幕上显示的时候, 如果字符超过了窗口右边界, 则会被自动转移到下一 
+行的开始位置。 
+   下面这个程序给例1.中加入了一些文本的输出函数。 
+   例2.: 
+      #include <stdio.h> 
+      #include <conio.h> 
+      int main() 
+     { 
+          int i; 
+          char *c[]={"BLACK",   "BLUE",   "GREEN",   "CYAN",   "RED", 
+                     "MAGENTA", "BROWN", "LIGHTGRAY"}; 
+          textbackground(0);            /* 设置屏幕背景色 */ 
+          clrscr();                     /* 清除文本屏幕 */ 
+          for(i=1; i<8; i++) 
+            { 
+               window(10+i*5, 5+i, 30+i*5, 15+i); /* 定义文本窗口 */ 
+               textbackground(i);        /* 定义窗口背景色 */ 
+               clrscr();                 /* 清除窗口 */ 
+             } 
+          getch(); 
+          return 0; 
+     } 
+
+    4. 有关屏幕操作的函数 
+
+    void clrscr(void);   清除当前窗口中的文本内容,  并把光标定位在窗口 
+                         的左上角(1, 1)处。 
+    void clreol(void);   清除当前窗口中从光标位置到行尾的所有字符,  光 
+                         标位置不变。 
+    void gotoxy(x, y);   该函数很有用,  它用来定位光标在当前窗口中的位 
+                         置。这里x, y是指光标要定位处的坐标(相对于窗口 
+                         而言), 当x, y超出了窗口的大小时, 该函数就不起 
+                         作用了。 
+
+     int gettext(int xl, int yl, int x2, int y2, void *buffer); 
+     int puttext(int x1, int y1, int x2, int y2, void *buffer); 
+    gettext()函数是将屏幕上指定的矩形区域内文本内容存入buffer 指针指向 
+的一个内存空间。内存的大小用下式计算: 
+     所用字节大小=行数*列数*2 
+其中: 
+     行数=y2-y1+1        列数=x2-x1+1 
+    puttext()函数则是将gettext()函数存入内存buffer中的文字内容拷贝到屏 
+幕上指定的位置。 
+    int movetext(int x1, int x2, int y2, int x3, int y3); 
+    movetext()函数将屏幕上左上角为(x1, y1), 右下角为(x2, y2)的一矩形窗 
+口内的文本内容拷贝到左上角为(x3, y3)的新的位置。该函数的坐标也是相对于 
+整个屏幕而言的。 
+    注意: 
+    1. gettext()函数和puttext()函数中的坐标是对整个屏幕而言的,  即是屏 
+幕的绝对坐标, 而不是相对窗口的坐标。 
+    2. movetext()函数是拷贝而不是移动窗口区域内容, 即使用该函数后,  原 
+位置区域的文本内容仍然存在。 
+  
+    例3. 
+     include <conio.h> 
+     main() 
+     { 
+          int i; 
+          char *f[]={"Load    F3", "Pick  Alt-F3", "New    ", 
+                     "Save    F2", "Write to    ", "Directory", 
+                     "Change dir", "Os shee    ", "Quit Alt-X"}; 
+          char buf[9*14*2]; 
+          clrscr(); 
+          textcolor(YELLOW); 
+          textbackground(BLUE); 
+          clrscr(); 
+          gettext(10, 2, 24, 11, buf); 
+          window(10, 2, 24, 11); 
+          textbackground(RED); 
+          textcolor(YELLOW); 
+          clrscr(); 
+          for(i=0; i<9; i++) 
+          { 
+               gotoxy(1, i++); 
+               cprintf("%s", f[i]); 
+          } 
+          getch(); 
+          movetext(10, 2, 24, 11, 40, 10); 
+          puttext(10, 2, 24, 11, buf); 
+          getch(); 
+     } 
+    下面再介绍一些函数: 
+     void highvideo(void);    设置显示器高亮度显示字符。 
+     void lowvideo(void);     设置显示器低亮度显示字符。 
+     void normvideo(void);    使显示器返回到程序运行前的显示方式。 
+     int wherex(void);        这两个函数返回当前窗口下光标的x, y坐标。 
+     int wherey(void); 

@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: MazeArray - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP98.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/MazeArray.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP98.tmp" 
+<h3>Output Window</h3>
+Compiling...
+MazeStack.cpp
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(18) : error C2146: syntax error : missing ';' before identifier 'data'
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(18) : error C2501: 'Maze' : missing storage-class or type specifiers
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(18) : error C2501: 'data' : missing storage-class or type specifiers
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(32) : error C2061: syntax error : identifier 'Maze'
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(36) : error C2065: 'e' : undeclared identifier
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(36) : error C2039: 'data' : is not a member of 'nude'
+        F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(17) : see declaration of 'nude'
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(42) : error C2146: syntax error : missing ';' before identifier 'Pop'
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(42) : error C2501: 'Maze' : missing storage-class or type specifiers
+F:\其他\学习有关资料\程\数据结构（C语言版）\课程设计\MazeStack.cpp(42) : fatal error C1004: unexpected end of file found
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+MazeStack.obj - 9 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
